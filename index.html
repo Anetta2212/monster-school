@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>School of Horror</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=Spectral:ital,wght@0,400;0,600;1,400&family=Special+Elite&display=swap">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="atmos" aria-hidden="true"><div class="grain"></div><div class="vignette"></div></div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="crest-ghost" viewBox="0 0 120 120">
+      <g fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M30 102V54C30 32 44 18 60 18C76 18 90 32 90 54V102L80 94L70 102L60 94L50 102L40 94Z"/>
+        <circle cx="48" cy="54" r="5" fill="currentColor" stroke="none"/>
+        <circle cx="72" cy="54" r="5" fill="currentColor" stroke="none"/>
+        <ellipse cx="60" cy="73" rx="5" ry="8"/>
+      </g>
+    </symbol>
+    <symbol id="crest-witch" viewBox="0 0 120 120">
+      <g fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+        <ellipse cx="58" cy="94" rx="44" ry="12"/>
+        <path d="M36 90C44 64 52 38 62 14C66 36 78 64 82 90"/>
+        <path d="M41 74C54 82 68 82 78 74"/>
+        <path d="M100 26l3 8 8 3-8 3-3 8-3-8-8-3 8-3z"/>
+      </g>
+    </symbol>
+    <symbol id="crest-vampire" viewBox="0 0 120 120">
+      <g fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M18 42C34 68 86 68 102 42"/>
+        <path d="M38 56L46 84L54 63"/>
+        <path d="M66 63L74 84L82 56"/>
+        <path d="M60 90C53 99 53 107 60 107C67 107 67 99 60 90Z" fill="currentColor"/>
+      </g>
+    </symbol>
+    <symbol id="crest-monster" viewBox="0 0 120 120">
+      <g fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="30" y="28" width="60" height="70" rx="6"/>
+        <path d="M30 46H90"/>
+        <rect x="18" y="62" width="12" height="16" rx="2"/>
+        <rect x="90" y="62" width="12" height="16" rx="2"/>
+        <circle cx="46" cy="64" r="5" fill="currentColor" stroke="none"/>
+        <circle cx="74" cy="64" r="7" fill="currentColor" stroke="none"/>
+        <path d="M42 86H78"/>
+        <path d="M48 81V91M56 81V91M64 81V91M72 81V91"/>
+      </g>
+    </symbol>
+  </defs>
+</svg>
+
+<div class="page">
+  <header class="bar">
+    <span>School of Horror</span>
+    <nav class="tabs" aria-label="Main">
+      <button class="tab" type="button" data-go="intro">Home</button>
+      <button class="tab" type="button" data-go="rules">Rules</button>
+      <button class="tab" type="button" data-go="result" id="tabResult" hidden>My ID</button>
+    </nav>
+  </header>
+
+  <main>
+    <section id="intro" class="intro">
+      <p class="label">Office of Admissions &middot; Form 13</p>
+      <h1>Welcome to Your New <em>School</em></h1>
+      <p class="lede">You have been accepted to a school where ghosts, witches, vampires and monsters study side by side. Before we hand out your timetable, answer 8 questions so we can place you in the right class.</p>
+      <p class="small" id="homeNote">It takes about two minutes. There are no wrong answers, only dangerous ones.</p>
+      <span class="stamp" id="homeStamp">Enrollment pending</span>
+      <div class="actions">
+        <button class="btn" id="viewResult" type="button" hidden>View my student ID</button>
+        <button class="btn" id="start" type="button">Begin the entrance exam</button>
+        <button class="btn ghost" type="button" data-go="rules">Read the school rules</button>
+      </div>
+      <ul class="roster" aria-label="The four classes">
+        <li data-k="ghost"><svg viewBox="0 0 120 120" aria-hidden="true"><use href="#crest-ghost"/></svg><span>Ghosts</span></li>
+        <li data-k="witch"><svg viewBox="0 0 120 120" aria-hidden="true"><use href="#crest-witch"/></svg><span>Witches</span></li>
+        <li data-k="vampire"><svg viewBox="0 0 120 120" aria-hidden="true"><use href="#crest-vampire"/></svg><span>Vampires</span></li>
+        <li data-k="monster"><svg viewBox="0 0 120 120" aria-hidden="true"><use href="#crest-monster"/></svg><span>Monsters</span></li>
+      </ul>
+    </section>
+
+    <section id="quiz" class="quiz" hidden>
+      <div class="quiz-top">
+        <div class="progress" id="progress" aria-hidden="true"></div>
+        <p class="label" id="count" aria-live="polite"></p>
+      </div>
+      <h2 id="question" tabindex="-1"></h2>
+      <ul class="options" id="options"></ul>
+      <div class="quiz-foot">
+        <button class="link" id="back" type="button">&larr; Previous question</button>
+        <span class="hint">Tip: press 1 to 4 on a keyboard</span>
+      </div>
+    </section>
+
+    <section id="result" class="result" hidden>
+      <article class="id" id="idcard">
+        <div class="id-inner">
+          <div class="id-head label"><span>Student ID &middot; School of Horror</span><span>Enrolled 30.10.2026</span></div>
+          <div class="id-body">
+            <svg class="crest-big" viewBox="0 0 120 120" aria-hidden="true"><use id="rcrest" href="#crest-ghost"/></svg>
+            <div>
+              <p class="label">You belong to the class of</p>
+              <h2 id="rname"></h2>
+              <p class="motto" id="rmotto"></p>
+            </div>
+          </div>
+          <p id="rdesc" style="margin:0"></p>
+          <span class="stamp ok">Admitted</span>
+        </div>
+      </article>
+
+      <div class="facts">
+        <div class="fact">
+          <p class="label">Your timetable</p>
+          <ol class="timetable" id="rtable"></ol>
+        </div>
+        <div class="fact">
+          <p class="label">Your teacher</p>
+          <p class="name" id="rteacher"></p>
+          <p id="rteacherline"></p>
+        </div>
+        <div class="fact">
+          <p class="label">The rule you will break first</p>
+          <p id="rrule"></p>
+        </div>
+        <div class="fact">
+          <p class="label" id="rfacttitle"></p>
+          <p id="rfact"></p>
+        </div>
+        <div class="fact wide">
+          <p class="label">How your answers split</p>
+          <div class="scores" id="rscores"></div>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button class="btn" id="copy" type="button">Copy my result</button>
+        <button class="btn ghost" type="button" data-go="intro">Back to home</button>
+        <button class="btn ghost" type="button" data-go="rules">School rules</button>
+        <button class="btn ghost" id="again" type="button">Take the exam again</button>
+      </div>
+      <p class="note" id="note" aria-live="polite"></p>
+      <input class="fallback" id="fallback" readonly hidden aria-label="Result text to copy">
+    </section>
+
+    <section id="rules" class="rules" hidden>
+      <p class="label">Posted by the Headmaster</p>
+      <h2>School Rules</h2>
+      <p class="lede">Read them before the bell rings. Nobody has ever read them after.</p>
+      <ol class="rulelist">
+        <li><b>Dress code</b><p>Black, grey or deep purple only. Bright colours attract attention, and attention is dangerous.</p></li>
+        <li><b>The bell</b><p>Lessons begin when the bell rings. If you cannot find the bell, follow the howling.</p></li>
+        <li><b>Classroom 13</b><p>Do not open the door of Classroom 13. It is not on the school map. That is the point.</p></li>
+        <li><b>Corridors</b><p>No running. Floating, flying and gliding are allowed, but keep to the right.</p></li>
+        <li><b>Homework</b><p>Hand it in on time. &ldquo;A ghost ate it&rdquo; is not an excuse, because ghosts do not eat.</p></li>
+        <li><b>Respect</b><p>Be kind to every student, whether they have fur, fangs, scales or no body at all.</p></li>
+        <li><b>Tests</b><p>No spells, bites or roaring during an exam. Peeking through the wall counts as cheating.</p></li>
+        <li><b>The library</b><p>Silence, please. Only ghosts may whisper, because they cannot help it.</p></li>
+        <li><b>Portraits</b><p>Never turn your back on the portraits. They gossip.</p></li>
+        <li><b>Visitors</b><p>Every visitor must pass the entrance exam. If you are reading this, you already did.</p></li>
+      </ol>
+      <div class="extra" id="rulesClass" hidden>
+        <p class="label" id="rulesClassLabel"></p>
+        <p id="rulesClassText" style="margin:0"></p>
+      </div>
+      <p class="small">Breaking a rule means detention in the cellar, with Professor Whisper.</p>
+      <div class="actions">
+        <button class="btn" type="button" data-go="intro">Back to home</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">Made by class 1B for American Dark Friday &middot; Fri 30 Oct</footer>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
