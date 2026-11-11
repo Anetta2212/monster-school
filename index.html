@@ -58,7 +58,11 @@
     <span>School of Horror</span>
     <nav class="tabs" aria-label="Main">
       <button class="tab" type="button" data-go="intro">Home</button>
+      <button class="tab" type="button" data-go="classes">Classes</button>
+      <button class="tab" type="button" data-go="teachers">Teachers</button>
+      <button class="tab" type="button" data-go="map">Map</button>
       <button class="tab" type="button" data-go="rules">Rules</button>
+      <button class="tab" type="button" data-go="final">Final test</button>
       <button class="tab" type="button" data-go="result" id="tabResult" hidden>My ID</button>
     </nav>
   </header>
@@ -68,11 +72,12 @@
       <p class="label">Office of Admissions &middot; Form 13</p>
       <h1>Welcome to Your New <em>School</em></h1>
       <p class="lede">You have been accepted to a school where ghosts, witches, vampires and monsters study side by side. Before we hand out your timetable, answer 8 questions so we can place you in the right class.</p>
-      <p class="small" id="homeNote">It takes about two minutes. There are no wrong answers, only dangerous ones.</p>
+      <p class="small" id="homeNote">It takes about two minutes. There are no wrong answers, only dangerous ones. Finish it to unlock the rest of the school.</p>
       <span class="stamp" id="homeStamp">Enrollment pending</span>
       <div class="actions">
         <button class="btn" id="viewResult" type="button" hidden>View my student ID</button>
         <button class="btn" id="start" type="button">Begin the entrance exam</button>
+        <button class="btn ghost" type="button" data-go="classes">Explore the classes</button>
         <button class="btn ghost" type="button" data-go="rules">Read the school rules</button>
       </div>
       <ul class="roster" aria-label="The four classes">
@@ -152,26 +157,43 @@
       <h2>School Rules</h2>
       <p class="lede">Read them before the bell rings. Nobody has ever read them after.</p>
       <ol class="rulelist">
-        <li><b>Dress code</b><p>Black, grey or deep purple only. Bright colours attract attention, and attention is dangerous.</p></li>
-        <li><b>The bell</b><p>Lessons begin when the bell rings. If you cannot find the bell, follow the howling.</p></li>
-        <li><b>Classroom 13</b><p>Do not open the door of Classroom 13. It is not on the school map. That is the point.</p></li>
-        <li><b>Corridors</b><p>No running. Floating, flying and gliding are allowed, but keep to the right.</p></li>
-        <li><b>Homework</b><p>Hand it in on time. &ldquo;A ghost ate it&rdquo; is not an excuse, because ghosts do not eat.</p></li>
-        <li><b>Respect</b><p>Be kind to every student, whether they have fur, fangs, scales or no body at all.</p></li>
-        <li><b>Tests</b><p>No spells, bites or roaring during an exam. Peeking through the wall counts as cheating.</p></li>
-        <li><b>The library</b><p>Silence, please. Only ghosts may whisper, because they cannot help it.</p></li>
-        <li><b>Portraits</b><p>Never turn your back on the portraits. They gossip.</p></li>
-        <li><b>Visitors</b><p>Every visitor must pass the entrance exam. If you are reading this, you already did.</p></li>
+        <li><b>Coffins</b><p>No sleeping in coffins during lessons.</p></li>
+        <li><b>Potions</b><p>Never drink a potion without permission.</p></li>
+        <li><b>Fridays</b><p>Every student must scare the headteacher on Fridays.</p></li>
+        <li><b>Corridors</b><p>No flying on broomsticks in the corridors.</p></li>
+        <li><b>Manners</b><p>No biting your classmates.</p></li>
+        <li><b>Tests</b><p>Ghosts must not disappear during tests.</p></li>
+        <li><b>Frogs</b><p>No turning teachers into frogs.</p></li>
+        <li><b>Lessons</b><p>Werewolves must not howl during lessons.</p></li>
       </ol>
       <div class="extra" id="rulesClass" hidden>
         <p class="label" id="rulesClassLabel"></p>
         <p id="rulesClassText" style="margin:0"></p>
       </div>
-      <p class="small">Breaking a rule means detention in the cellar, with Professor Whisper.</p>
+      <p class="small">Break the rules and face the Headmaster. Detention is in the cellar, with Professor Whisper.</p>
       <div class="actions">
         <button class="btn" type="button" data-go="intro">Back to home</button>
       </div>
     </section>
+
+    <section id="classes" class="pg" hidden>
+      <p class="label">Timetables</p><h2>The Classes</h2>
+      <p class="lede">Every class has its own lessons. Pick one to see what you will study.</p>
+      <div class="chips" id="cTabs"></div><div class="fact" id="cBody"></div>
+    </section>
+    <section id="teachers" class="pg" hidden>
+      <p class="label">Staff room</p><h2>Our Teachers</h2>
+      <p class="lede">Four teachers, four very different lessons. Nobody has ever won an argument with them.</p>
+      <div class="facts" id="tList"></div>
+    </section>
+    <section id="map" class="pg" hidden>
+      <p class="label">Do not get lost</p><h2>Monster School Map</h2>
+      <p class="lede">Tap the glowing markers to explore the school grounds. Some places are not on the official list.</p>
+      <div class="mapbox" id="mBox"><img src="map.jpg" alt="Hand-painted map of the Monster School"></div>
+      <div class="chips" id="mChips"></div>
+      <div class="fact" id="mInfo" aria-live="polite"></div>
+    </section>
+    <section id="final" class="pg" hidden><div id="fBox"></div></section>
   </main>
 
   <footer class="foot">Made by class 1B for American Dark Friday &middot; Fri 30 Oct</footer>
